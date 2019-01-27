@@ -1,0 +1,24 @@
+docker ： 应用容器引擎
+	作用：开发者可以打包他们的应用以及依赖包到一个可移植的容器中，然后发布到任何流行的linux机器上，也可以实现虚拟化。
+
+	一个完整的Docker有以下几个部分组成：
+		dockerClient客户端
+		Docker Daemon守护进程
+		Docker Image镜像
+		DockerContainer容器
+
+	Docker 架构：Docker使用客户端-服务器(C/S)架构模式，使用远程API来管理和创建Docker容器。Docker 容器通过 Docker 镜像来创建。容器与镜像的关系类似于面向对象编程中的对象与类。		镜像———类，容器———对象。
+
+	Docker daemon 作为服务端接受来自客户的请求，并处理这些请求（创建、运行、分发容器）。 客户端和服务端既可以运行在一个机器上，也可通过 socket 或者RESTful API 来进行通信。
+	Docker daemon 一般在宿主主机后台运行，等待接收来自客户端的消息。 Docker 客户端则为用户提供一系列可执行命令，用户用这些命令实现跟 Docker daemon 交互。
+
+
+	局限：Docker是基于Linux 64bit的，无法在32bit的linux/Windows/unix环境下使用
+		LXC是基于cgroup等linux kernel功能的，因此container的guest系统只能是linux base的
+		隔离性相比KVM之类的虚拟化方案还是有些欠缺，所有container公用一部分的运行库
+		网络管理相对简单，主要是基于namespace隔离
+		cgroup的cpu和cpuset提供的cpu功能相比KVM的等虚拟化方案相比难以度量(所以dotcloud主要是按内存收费)
+		Docker对disk的管理比较有限
+		container随着用户进程的停止而销毁，container中的log等用户数据不便收集
+
+	
